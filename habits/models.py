@@ -1,15 +1,9 @@
 from django.db import models
 from django.conf import settings
-from .validators import (
-    validate_reward_or_related,
-    validate_execution_time,
-    validate_related_pleasant,
-    validate_pleasant_habit,
-    validate_periodicity
-)
+from . import validators # Импортируем валидаторы
 
 class Habit(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='habits')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='habits', verbose_name="Пользователь")
     place = models.CharField(max_length=255, verbose_name="Место выполнения")
     time = models.TimeField(verbose_name="Время выполнения")
     action = models.TextField(verbose_name="Действие привычки")
@@ -29,11 +23,11 @@ class Habit(models.Model):
         return f"{self.user} - {self.action}"
 
     def clean(self):
-        validate_reward_or_related(self.reward, self.related_habit)
-        validate_execution_time(self.execution_time)
-        validate_related_pleasant(self.related_habit)
-        validate_pleasant_habit(self.is_pleasant, self.reward, self.related_habit)
-        validate_periodicity(self.periodicity)
+        validators.validate_reward_or_related(self.reward, self.related_habit)
+        validators.validate_execution_time(self.execution_time)
+        validators.validate_related_pleasant(self.related_habit)
+        validators.validate_pleasant_habit(self.is_pleasant, self.reward, self.related_habit)
+        validators.validate_periodicity(self.periodicity)
 
     def save(self, *args, **kwargs):
         self.full_clean() # Вызывает clean()
