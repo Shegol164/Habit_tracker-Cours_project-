@@ -8,6 +8,12 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "django (>=5.2.5,<6.0.0)",
+    "rest-framework-simplejwt (>=0.0.2,<0.0.3)",
+    "requests (>=2.32.5,<3.0.0)",
+    "celery (>=5.5.3,<6.0.0)",
+    "django-cors-headers (>=4.7.0,<5.0.0)",
+    "django-filter (>=25.1,<26.0)"
 ]
 
 
