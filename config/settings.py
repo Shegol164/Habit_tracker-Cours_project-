@@ -95,7 +95,7 @@ SIMPLE_JWT = {
 
 # CORS (разрешаем фронтенду подключаться)
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('FRONTEND_URL'),
+    origin.strip() for origin in os.getenv('FRONTEND_URL', 'http://localhost:3000').split(',')
 ]
 
 # Celery
