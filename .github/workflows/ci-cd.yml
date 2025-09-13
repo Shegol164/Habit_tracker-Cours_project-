@@ -84,5 +84,5 @@ jobs:
         script: |
           cd /home/deployer/Habit_tracker-Cours_project- # Убедитесь, что путь правильный
           git pull origin develop
-          docker-compose down
-          docker-compose up -d --build
+          docker-compose -p habit_tracker down
+          docker-compose -p habit_tracker up -d --build
