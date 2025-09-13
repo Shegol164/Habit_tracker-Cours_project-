@@ -66,8 +66,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build Docker images
-      run: docker compose build
+    - name: Build specific service image
+      run: docker build -t habit_tracker-web .
 
   deploy:
     needs: build
