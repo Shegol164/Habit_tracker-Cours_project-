@@ -82,7 +82,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/deployer/Habit_tracker-Cours_project-
+          cd /home/deployer/Habit_tracker-Cours_project- # Убедитесь, что путь правильный
           git pull origin develop
-          docker compose down
-          docker compose up -d --build
+          docker-compose down
+          docker-compose up -d --build
