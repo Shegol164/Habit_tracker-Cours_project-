@@ -62,7 +62,6 @@ jobs:
 
   build:
     needs: test-and-lint
-    if: github.ref == 'refs/heads/develop' # Выполняется только если предыдущие шаги успешны и это ветка develop
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -72,7 +71,6 @@ jobs:
 
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
