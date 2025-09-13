@@ -43,18 +43,20 @@ jobs:
 
     - name: Run tests
       env:
-        DB_HOST: localhost
-        DB_PORT: 5432
-        DB_NAME: postgres
-        DB_USER: postgres
-        DB_PASSWORD: postgres
+        # Существующие переменные
         DEBUG: True
         SECRET_KEY: not-a-secret-for-ci
         TELEGRAM_BOT_TOKEN: fake-token-for-ci
         TELEGRAM_BOT_USERNAME: fake_bot
         CELERY_BROKER_URL: redis://localhost:6379/0
         CELERY_RESULT_BACKEND: redis://localhost:6379/0
-        ALLOWED_HOSTS: localhost,127.0.0.1
+        # НОВЫЕ переменные для тестовой БД
+        DB_HOST: localhost
+        DB_PORT: 5432
+        DB_NAME: postgres
+        DB_USER: postgres
+        DB_PASSWORD: postgres
+        DB_ENGINE: django.db.backends.postgresql
       run: |
         python manage.py test
 
