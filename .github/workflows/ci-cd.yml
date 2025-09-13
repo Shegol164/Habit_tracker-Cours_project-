@@ -82,7 +82,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /https://github.com/Shegol164/Habit_tracker-Cours_project-.git/habit_tracker
+          cd /home/deployer/Habit_tracker-Cours_project-
           git pull origin develop
           docker-compose down
           docker-compose up -d --build
