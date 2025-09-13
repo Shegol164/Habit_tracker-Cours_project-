@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -95,7 +95,7 @@ SIMPLE_JWT = {
 
 # CORS (разрешаем фронтенду подключаться)
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('FRONTEND_URL'),
+    origin.strip() for origin in os.getenv('FRONTEND_URL', 'http://localhost:3000').split(',')
 ]
 
 # Celery
