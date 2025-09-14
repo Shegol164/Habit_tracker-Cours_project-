@@ -1,4 +1,4 @@
-# config/management/commands/wait_for_db.py
+# config/management 2/commands/wait_for_db.py
 import time
 from django.core.management.base import BaseCommand
 from django.db import connections
